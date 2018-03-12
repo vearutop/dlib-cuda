@@ -32,3 +32,13 @@ exit /B 1
 set PATH=%ProgramFiles%\NVIDIA GPU Computing Toolkit\CUDA\v8.0\bin;%ProgramFiles%\NVIDIA GPU Computing Toolkit\CUDA\v8.0\libnvvp;%PATH%
 
 nvcc -V
+set CUDA_TOOLKIT_ROOT_DIR="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0"
+set CUDA_NVCC_EXECUTABLE="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\bin\nvcc.exe"
+set CUDA_INCLUDE_DIRS="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\include"
+set CUDA_CUDART_LIBRARY="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0\bin\cudart64_80.dll"
+
+git clone https://github.com/davisking/dlib.git
+cd dlib
+git checkout v19.9
+python setup.py build --yes USE_AVX_INSTRUCTIONS
+dir
