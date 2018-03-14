@@ -1,5 +1,8 @@
 version: 1.0.{build}
 
+platform:
+- x64
+
 build_script:
 - cmd: >-
     call build.cmd
