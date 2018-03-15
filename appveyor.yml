@@ -1,5 +1,10 @@
 version: 1.0.{build}
 
+artifacts:
+  - path: dlib\build
+    name: build result
+    type: zip
+
 platform:
 - x64
 

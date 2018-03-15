@@ -11,10 +11,14 @@ cuda_9.0.176_windows.exe -s compiler_9.0 ^
 echo Downloading cuDNN
 appveyor DownloadFile https://github.com/vearutop/builds/releases/download/secret1/nddcu.7z -FileName cudnn7.7z
 7z x -p%pass% cudnn7.7z -ocudnn
-dir cudnn
-dir cudnn\cuda\bin
-dir cudnn\cuda\lib 
-dir cudnn\cuda\include     
+
+cd cudnn\cuda
+dir bin
+dir lib 
+dir include
+rem move the directories
+for /d %%i in (*) do move "%%i" "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0"
+cd ../..
 
 dir .
 
