@@ -17,16 +17,15 @@ dir bin
 dir lib 
 dir include
 rem move the directories
-for /d %%i in (*) do move "%%i" "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0"
+for /d %i in (*) do move "%%i\*.*" "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\%i"
 cd ../..
 
 dir .
+ren cudnn\cuda cudnn\v9.0
+robocopy cudnn\v9.0 "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0" /e
 
-dir "%ProgramFiles%"
-dir "C:\Program Files"
-dir "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA"
-dir "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0"
 dir "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin"
+dir "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.0\lib"
 
 if NOT EXIST "%ProgramFiles%\NVIDIA GPU Computing Toolkit\CUDA\v9.0\bin\cudart64_90.dll" ( 
 echo "Failed to install CUDA"
@@ -47,5 +46,6 @@ git checkout v19.9
 
 set PYTHON="C:\\Python36-x64"
 %PYTHON%\python.exe -m pip install wheel
+%PYTHON%\python.exe -m pip install numpy
 %PYTHON%\python.exe setup.py build --yes USE_AVX_INSTRUCTIONS
 dir build
